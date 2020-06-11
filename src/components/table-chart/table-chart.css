@@ -1,0 +1,44 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.justify-end {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 40px;
+}
+
+a {
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  text-align: left;
+  width: 100%;
+}
+
+th {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+th,
+td {
+  padding: 15px 25px 15px 0;
+}
+
+td {
+  font-size: 0.85rem;
+}
+
+tr:hover {
+  cursor: pointer;
+  background: var(--app-ternary-color);
+}
+
+tr.selected {
+  border: 1px solid var(--app-secondary-color-interactive);
+  background: var(--app-ternary-color);
+}
