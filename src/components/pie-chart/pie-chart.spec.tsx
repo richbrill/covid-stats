@@ -10,23 +10,43 @@ describe('pie-chart', () => {
     expect(page.root).toEqualHtml(`
       <pie-chart>
         <mock:shadow-root>
-          <h1>Title</h1>
-          <button>Reset</button>
+          <slot name="title"></slot>
+          <svg viewBox="-300,-400,600,800"></svg>
+          <slot name="button"></slot>
         </mock:shadow-root>
       </pie-chart>
     `);
   });
 
-  it('renders prop values', async () => {
-    const {root} = await newSpecPage({
+  it('renders data prop and slots', async () => {
+    const page = await newSpecPage({
       components: [PieChart],
-      html: `<pie-chart title-text="England" button-text="Clear selected country"></pie-chart>`
+      html: `<div></div>`
     });
-    expect(root).toEqualHtml(`
-      <pie-chart title-text="England" button-text="Clear selected country">
+
+    let component = page.doc.createElement('pie-chart');
+    (component as any).data = [
+      [
+        "Frankfurter",
+        100
+      ],
+      [
+        "Mustard",
+        5
+      ]
+    ];
+    page.root.appendChild(component);
+    await page.waitForChanges();
+    
+    expect(page.root).toEqualHtml(`
+      <pie-chart>
         <mock:shadow-root>
-          <h1>England</h1>
-          <button>Clear selected country</button>
+           <slot name="title"></slot>
+           <svg viewBox="-300,-400,600,800">
+             <path d="M1.830846964725293e-14,-299L0,0Z" fill="rgb(11, 96, 161)"></path>
+             <path d="M1.830846964725293e-14,-299L0,0Z" fill="rgb(11, 96, 161)"></path>
+          </svg>
+          <slot name="button"></slot>
         </mock:shadow-root>
       </pie-chart>
     `);

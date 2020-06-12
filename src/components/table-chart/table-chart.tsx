@@ -41,7 +41,7 @@ export class TableChart implements ComponentInterface {
   }
   
   /** The data to feed into the d3 table */
-  @Prop() data: Array<object>;
+  @Prop() data: Array<object> = [];
 
   /** Redraw table chart when data prop changes */
   @Watch('data')
@@ -49,7 +49,7 @@ export class TableChart implements ComponentInterface {
     this.renderChart();
   }
 
-  @Prop() columnHeaders: Array<string>;
+  @Prop() columnHeaders: Array<string> = [];
   
   @State() tableData: Array<object>;
 
@@ -77,6 +77,7 @@ export class TableChart implements ComponentInterface {
 
     this.table
       .append('thead')
+      .append('tr')
       .selectAll('th')
       .data(this.columnHeaders)
       .join('th')
@@ -105,9 +106,11 @@ export class TableChart implements ComponentInterface {
   render() {
     return (
       <Host>
-        <div class="justify-end">
-          <a onClick={() => this.handleBtnClick()}>Show {this.showingMore ? 'less' : 'more'}...</a>
-        </div>
+        {this.data.length > this.maxRows &&
+          <div class="justify-end">
+            <a onClick={() => this.handleBtnClick()}>Show {this.showingMore ? 'less' : 'more'}...</a>
+          </div>
+        }
         <table />
       </Host>
     );

@@ -19,6 +19,10 @@ table {
   width: 100%;
 }
 
+thead { 
+  background: var(--app-secondary-color);
+}
+
 th {
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -26,7 +30,7 @@ th {
 
 th,
 td {
-  padding: 15px 25px 15px 0;
+  padding: 15px 25px 15px 10px;
 }
 
 td {

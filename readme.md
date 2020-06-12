@@ -1,3 +1,7 @@
+# COVID statistics
+
+This app was built with help from the brilliant Stencil App Starter and uses Typescript and D3 to generate a table and a pie chart along with Redux to handle some app state. This was my first foray into Typescript and Stencil so it might be a bit rough around the edges...
+
 # Stencil App Starter
 
 Stencil is a compiler for building fast web apps using Web Components.
@@ -10,13 +14,7 @@ Stencil also enables a number of key capabilities on top of Web Components, in p
 
 ## Getting Started
 
-To start a new project using Stencil, clone this repo to a new directory:
-
-```bash
-npm init stencil app
-```
-
-and run:
+Run the following to start up a dev server locally:
 
 ```bash
 npm start

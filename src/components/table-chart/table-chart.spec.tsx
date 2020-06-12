@@ -10,22 +10,54 @@ describe('table-chart', () => {
     expect(page.root).toEqualHtml(`
       <table-chart>
         <mock:shadow-root>
-          <slot></slot>
+          <table>
+            <thead>
+              <tr></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </mock:shadow-root>
       </table-chart>
     `);
   });
 
   it('renders prop values correctly', async () => {
-    const {root} = await newSpecPage({
-      components: [PieChart],
-      html: `<table-chart title-text="England" button-text="Clear selected country"></table-chart>`
+    const page = await newSpecPage({
+      components: [TableChart],
+      html: `<div></div>`
     });
-    expect(root).toEqualHtml(`
+
+    let component = page.doc.createElement('table-chart');
+    (component as any).data = [
+      [
+        "Chips",
+        150
+      ],
+      [
+        "Burger",
+        25
+      ]
+    ];
+    (component as any).columnHeaders = ['Food', 'Amount'];
+    page.root.appendChild(component);
+    await page.waitForChanges();
+
+    expect(page.root).toEqualHtml(`
       <table-chart>
         <mock:shadow-root>
-          <h1>England</h1>
-          <button>Clear selected country</button>
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Food
+                </th>
+                <th>
+                  Amount
+                </th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </mock:shadow-root>
       </table-chart>
     `);

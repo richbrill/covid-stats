@@ -55,7 +55,7 @@ export class PieChart implements ComponentInterface {
       .sort(null)
       .value(d => d.value)
       (this.data);
-    
+
     const color = scaleOrdinal()
       .domain(this.data.map(d => d.label))
       .range(quantize(t => interpolateGnBu(t * 0.8 + 0.1), this.data.length).reverse());
@@ -69,7 +69,7 @@ export class PieChart implements ComponentInterface {
       .data(arcs)
       .join('path')
       .attr('fill', d => color(d.data.label))
-      .attr('d', singleArc)
+      .attr('d', singleArc);
   }
 
   render() {
