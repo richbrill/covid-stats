@@ -65,8 +65,6 @@ export class AppRoot {
   }
 
   render() {
-    console.log('globalRow', this.globalRow);
-    console.log('this.selectedRow', this.selectedRow);
     return (
       <Host>
         <div class="app">

@@ -8,6 +8,7 @@
   Any global CSS variables should also be applied here.
 */
 
+/** TODO Create a theme selector using Stencil's setMode in global (couldn't get it to work in the limited time I had left!) */
 :root {
   --app-primary-color: #101010;
   --app-secondary-color: #deefff;
